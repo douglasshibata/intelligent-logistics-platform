@@ -1,0 +1,25 @@
+# Policies for Logistics Platform security boundary
+
+# Hospital Supplies Tenant Permissions
+p, admin, hospital_supplies, com.logistics.api.FleetAllocationService/*, WRITE
+p, admin, hospital_supplies, com.logistics.api.FleetAllocationService/*, READ
+p, admin, hospital_supplies, com.logistics.api.InventoryService/*, WRITE
+p, admin, hospital_supplies, com.logistics.api.InventoryService/*, READ
+
+p, logistic_agent, hospital_supplies, com.logistics.api.FleetAllocationService/reallocateVehicle, WRITE
+p, logistic_agent, hospital_supplies, com.logistics.api.FleetAllocationService/*, READ
+p, logistic_agent, hospital_supplies, com.logistics.api.InventoryService/getNearestSpares, READ
+
+p, driver, hospital_supplies, com.logistics.api.FleetAllocationService/getCurrentRoute, READ
+p, driver, hospital_supplies, com.logistics.api.InventoryService/getNearestSpares, READ
+
+# Retail Dry Tenant Permissions (Isolation Demonstration)
+p, admin, retail_dry, com.logistics.api.FleetAllocationService/*, WRITE
+p, admin, retail_dry, com.logistics.api.FleetAllocationService/*, READ
+p, operator, retail_dry, com.logistics.api.FleetAllocationService/getCurrentRoute, READ
+
+# Group/Inheritance definitions (g, user, role, domain)
+g, USR-1092, logistic_agent, hospital_supplies
+g, USR-0082, driver, hospital_supplies
+g, USR-3301, admin, hospital_supplies
+g, USR-4491, operator, retail_dry
